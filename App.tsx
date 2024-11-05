@@ -1,118 +1,101 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import 'react-native-gesture-handler'
+import { NavigationContainer } from '@react-navigation/native';
+import Learn from './src/pages/Learn';
+import Lessons from './src/pages/Lessons';
+import Login from './src/pages/Login';
+import Study from './src/pages/Study';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { AuthContextProvider } from './src/component/AuthContext';
+import { Icon } from 'react-native-paper';
+import { LogBox } from 'react-native';
+import Profile from './src/pages/Profile';
+import Result from './src/pages/Result';
+import Topic from './src/pages/Topic';
+import StudyAI from './src/pages/StudyAI';
+import ResultAI from './src/pages/ResultAI';
+import Ranking from './src/pages/Ranking';
+import { MenuProvider } from 'react-native-popup-menu';
+import Test from './src/pages/Test';
+import Tests from './src/pages/Tests';
+import ResultTest from './src/pages/ResultTest';
+import SideAvatar from './src/component/SideAvatar';
+import StudyWithAI from './src/pages/StudyWithAI';
+import TestAI from './src/pages/TestAI';
+LogBox.ignoreLogs(['new NativeEventEmitter']);
+LogBox.ignoreAllLogs()
+const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
-import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+function Home({navigation}) {
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
+    <Stack.Navigator initialRouteName='Learn'>
+      <Stack.Screen name='Learn' component={Learn} options={{headerLeft: () => null, headerRight: ()=><SideAvatar navigation={navigation}/>}}/>
+      <Stack.Screen name='Lesson' component={Lessons}/>
+      <Stack.Screen name='Study' component={Study} options={{headerShown: false}}/>
+      <Stack.Screen name='Result' component={Result} options={{headerShown: false}}/>
+    </Stack.Navigator>
+  )
+}
+function TestScreen({navigation}) {
+  return (
+    <Stack.Navigator initialRouteName='Tests'>
+      <Stack.Screen name='Tests' component={Tests} options={{headerLeft: () => null, headerRight: ()=><SideAvatar navigation={navigation.getParent()}/>}}/>
+      <Stack.Screen name='Test' component={Test} options={{headerShown: false}}/>
+      <Stack.Screen name='ResultTest' component={ResultTest} options={{headerShown: false}}/>
+    </Stack.Navigator>
+  )
 }
 
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
+function LoginScreen() {
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
+    <Stack.Navigator initialRouteName='Login'>
+      <Stack.Screen name='Login' component={Login} options={{headerShown: false}}/>
+      <Stack.Screen name='UserScreen' component={UserScreen} options={{headerShown: false}}/>
+    </Stack.Navigator>
+  )
 }
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
+function TopicScreen({navigation}) {
+  return(
+    <Stack.Navigator initialRouteName='Topic'>
+      <Stack.Screen name='Topic' component={Topic} options={{headerLeft: ()=>null, headerRight: ()=><SideAvatar navigation={navigation.getParent()}/>}}/>
+      <Stack.Screen name='StudyAI' component={StudyAI} options={{headerShown: false}}/>
+      <Stack.Screen name='ResultAI' component={ResultAI} options={{headerShown: false}}/>
+    </Stack.Navigator>
+  )
+}
+function AIScreen({navigation}) {
+  return (
+    <Stack.Navigator initialRouteName='AI'>
+      <Stack.Screen name='AI' component={StudyWithAI} options={{headerLeft: ()=>null, headerRight: ()=><SideAvatar navigation={navigation.getParent()}/>}}/>
+      <Stack.Screen name='Topic' component={Topic} />
+      <Stack.Screen name='TestAI' component={TestAI} options={{title: "Test with AI"}}/>
+      <Stack.Screen name='StudyAI' component={StudyAI} options={{headerShown: false}}/>
+      <Stack.Screen name='ResultAI' component={ResultAI} options={{headerShown: false}}/>
+    </Stack.Navigator>
+  )
+}
+function UserScreen({navigation}) {
+  return (
+    <MenuProvider>
+      <Tab.Navigator initialRouteName='Home'>
+        <Tab.Screen name='Home' component={Home} options={{headerShown: false, tabBarIcon:({ color, size })=><Icon source="home" color={color} size={size}/> }}/>
+        <Tab.Screen name='TestScreen' component={TestScreen} options={{title: "Test", headerShown: false, tabBarIcon:({ color, size })=><Icon source="lead-pencil" color={color} size={size}/> }}/>
+        <Tab.Screen name='AIScreen' component={AIScreen} options={{title: "AI", headerShown: false, tabBarIcon:({color, size})=><Icon source="head-lightbulb" color={color} size={size}/>}}/>
+        <Tab.Screen name='Ranking' component={Ranking} options={{tabBarIcon:({color, size})=><Icon source="chart-box-outline" color={color} size={size}/>, headerRight: ()=><SideAvatar navigation={navigation}/>}}/>
+        <Tab.Screen name='Profile' component={Profile} options={{tabBarIcon:({ color, size })=><Icon source="account-circle" color={color} size={size}/>}}/>
+      </Tab.Navigator>
+    </MenuProvider>
+  )
+}
+function App() {
+  return (
+    <AuthContextProvider>
+      <NavigationContainer>
+        <LoginScreen/>
+      </NavigationContainer>
+    </AuthContextProvider>
+  )
+}
 
 export default App;

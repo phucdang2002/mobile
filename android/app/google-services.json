@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "831682381926",
+    "project_id": "e-speaking",
+    "storage_bucket": "e-speaking.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:831682381926:android:155e678b76349cb35cc5a7",
+        "android_client_info": {
+          "package_name": "com.mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "831682381926-kj49ffvupvvavlssuf8svsjgs4jrgfa5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mobile",
+            "certificate_hash": "8101a59cc77bb0e394f4add4092dd68898883fa6"
+          }
+        },
+        {
+          "client_id": "831682381926-sjb52hvgk5c7ausc01b8dogo0b6thpak.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mobile",
+            "certificate_hash": "24ca9d9a3ff0a1aadc57563f79a430d5de3f130f"
+          }
+        },
+        {
+          "client_id": "831682381926-6ti7id1ibguu46b6lap86g1v79239mbh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLApbyPMJraPyPy6i43Y6PHteTAvZxaq8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "831682381926-6ti7id1ibguu46b6lap86g1v79239mbh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

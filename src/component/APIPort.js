@@ -1,0 +1,1 @@
+export const dataURL = "https://fva-portal.com/api/";
