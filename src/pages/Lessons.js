@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import { Card, ProgressBar, Button } from "react-native-paper";
 import { UserAuth } from "../component/AuthContext";
+import { dataURL } from "../component/APIPort";
 
 const Lessons = ({navigation, route}) => {
     const [lessons, setLessons] = useState([]);
@@ -10,7 +11,7 @@ const Lessons = ({navigation, route}) => {
     const {type} = route.params;
     const [processes, setProcesses] = useState([]);
     useEffect(()=> {
-        axios.get("http://34.136.63.21/api/lessons")
+        axios.get(dataURL + "lessons")
         .then(response => {
             setLessons(response.data);
             if (user.processes !== null){

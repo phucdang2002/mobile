@@ -6,6 +6,7 @@ import { useFocusEffect } from "@react-navigation/native";
 import { getHighlightedText, listen } from "../functions/CheckAnswer";
 import { Icon } from "react-native-paper";
 import { styles } from "../styles/StudyStyle";
+import { dataURL } from "../component/APIPort";
 const Test = ({navigation, route}) => {
     const [result, setResult] = useState([]);
     const [count, setCount] = useState(0)
@@ -20,7 +21,7 @@ const Test = ({navigation, route}) => {
         Voice.onSpeechEnd = stopListening;
         Voice.onSpeechError = onSpeechError;
         Voice.onSpeechResults = onSpeechResults;
-        axios.get("http://34.136.63.21/api/contest/"+testId)
+        axios.get(dataURL + "contest/"+testId)
         .then((response) => {
         setWords(response.data);
         })

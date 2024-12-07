@@ -3,6 +3,7 @@ import auth from "@react-native-firebase/auth";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
 import axios from "axios";
 import { Alert } from "react-native";
+import { dataURL } from "./APIPort";
 
 const AuthContext = createContext();
 
@@ -41,7 +42,7 @@ export const AuthContextProvider = ({ children }) => {
     }
   };
   const updateResult = async () => {
-    await axios.get("http://34.136.63.21/api/auth/"+user.uid)
+    await axios.get(dataURL + "auth/"+user.uid)
     .then(response=>setUser(response.data))
     .catch(e=>console.error(e))
   }
@@ -52,7 +53,7 @@ export const AuthContextProvider = ({ children }) => {
       email: signedUser.email,
       name: signedUser.displayName
     };
-    await axios.post("http://34.136.63.21/api/auth", newUser)
+    await axios.post(dataURL + "auth", newUser)
     .then((response) => {
       setUser(response.data)
     })

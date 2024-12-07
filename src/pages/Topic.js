@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { ActivityIndicator, Alert, FlatList, SafeAreaView, StyleSheet, View } from "react-native"
 import { Dropdown } from "react-native-element-dropdown";
 import { Button, Card, Text } from "react-native-paper";
+import { dataURL } from "../component/APIPort";
 
 let data = []
 const noS = [
@@ -24,7 +25,7 @@ const Topic = ({navigation}) => {
     const [list, setList] = useState([])
     
     useEffect(()=> {
-        axios.get("http://34.136.63.21/api/topics")
+        axios.get(dataURL + "topics")
         .then(response=> {
             for (const item of response.data) {
                 data.push({label: item.name, value: item.name.toLowerCase()})

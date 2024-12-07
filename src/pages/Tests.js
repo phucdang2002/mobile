@@ -3,13 +3,14 @@ import { useEffect, useState } from "react";
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import { Card, Button } from "react-native-paper";
 import { UserAuth } from "../component/AuthContext";
+import { dataURL } from "../component/APIPort";
 
 const Tests = ({navigation}) => {
     const [tests, setTests] = useState([]);
     const {user} = UserAuth();
     const [processes, setProcesses] = useState([]);
     useEffect(()=> {
-        axios.get("http://34.136.63.21/api/tests")
+        axios.get(dataURL + "tests")
         .then(response => {
             const values = response.data.splice(1);
             setTests(values);

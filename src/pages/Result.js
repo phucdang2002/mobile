@@ -5,6 +5,7 @@ import { useFocusEffect } from "@react-navigation/native";
 import { useCallback } from "react";
 import axios from "axios";
 import { styles } from "../styles/ResultStyle";
+import { dataURL } from "../component/APIPort";
 
 const Result = ({navigation, route}) => {
     const {correct, results, noOfWords, lessonId, type} = route.params;
@@ -16,7 +17,7 @@ const Result = ({navigation, route}) => {
             progress: (correct * 100 ) / noOfWords,
             type: type
         }
-        axios.post("http://34.136.63.21/api/processes", process)
+        axios.post(dataURL + "processes", process)
         .then(async (response) => {
             console.log(response.data);
             await updateResult();

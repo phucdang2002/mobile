@@ -2,11 +2,12 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import { FlatList, SafeAreaView, ScrollView, StyleSheet, View } from "react-native"
 import { Avatar, Text } from "react-native-paper"
+import { dataURL } from "../component/APIPort"
 
 const Ranking = () => {
     const [users, setUsers] = useState([])
     useEffect(()=> {
-        axios.get("http://34.136.63.21/api/auth")
+        axios.get(dataURL + "auth")
         .then((response)=> {
             const values = 
             setUsers(response.data.filter((user)=>user.role===2).sort((a, b) => b.point - a.point))
